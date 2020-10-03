@@ -1,0 +1,10 @@
+Need to get a valid number that was betted on
+
+Need to compute skewness V
+
+Could also change the mutation rate
+Get other parameters to train the NN on
+
+Results visualization
+
+Get the rng's preemptively and run the full process paralel!
