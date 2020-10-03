@@ -17,7 +17,6 @@ Research ndenumerate
 '''
 
 class Population(object):
-    population_size = 10
     fixed_individuals = 0 #Amount of individuals that get through to the next generation
     mutation_rate = 0.05
     
@@ -25,10 +24,11 @@ class Population(object):
 
     save_path = 'neurals/'
     
-    def __init__(self, save_size = 0):
+    def __init__(self, save_size = 0, population_size = 10):
 
         print('Creating population')
         #Creates the population
+        self.population_size = population_size
         self.population = self.loadPop(size = save_size)
         if(len(self.population) > self.population_size):
             print('Loaded', len(self.population), 'ais.', (len(self.population) - self.population_size) + 'more than intended')
@@ -171,7 +171,7 @@ class Population(object):
             path = self.save_path
         for x in range(len(self.population)):
             individual = self.population[x]
-            individual.nn.save(path + 'neural_' + str(x) + datetime.now().strftime() + '.h5')
+            individual.nn.save(path + 'neural_' + str(x) + '.h5')
           
     def loadPop(self, path= None, size = 0):
         loaded_ai = []
@@ -184,7 +184,7 @@ class Population(object):
             #Changed the for loop to a while loop?
         try:
             for i in range(size): #Does until crashing because there are no more ais to load
-                full_path = path + 'neural_' + str(len(loaded_ai)) + '.h5'
+                full_path = path + 'neural_' + str(i) + '.h5'
                 nn = load_model(full_path)
                 new_ai = GameAi(nn)
                 loaded_ai.append(new_ai)

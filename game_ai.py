@@ -40,6 +40,7 @@ class GameAi (object):
         #Stats (Used just for debug)
         self.record_number = []
         self.record_amount = []
+        self.record_balance = []
 
     def model(self):
         "returns a neural network for training"
@@ -60,6 +61,7 @@ class GameAi (object):
     def betResult(self, profit):
 
         self.balance += profit
+        self.record_balance.append(self.balance)
         if profit < 0:
             self.losses_in_a_row += 1
         else:
